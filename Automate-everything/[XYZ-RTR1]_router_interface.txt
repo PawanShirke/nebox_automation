@@ -1,0 +1,4 @@
+hostname XYZ-RTR1
+
+interface GigabitEthernet0/0/0.0
+ description CircuitName

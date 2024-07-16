@@ -1,0 +1,12 @@
+hostname {{ hostname }}
+
+vlan {{ vlan_id }}
+ name {{ circuit_name }}
+ exit
+interface {{ uplink_interface }}
+ switchport trunk allowed vlan add {{ vlan_id }}
+ end
+interface {{ interface.name }}
+ switchport mode access
+ switchport trunk allowed vlan add {{ vlan_id }}
+ end

@@ -1,0 +1,5 @@
+hostname XYZ-RTR1
+
+router bgp 
+ neighbor  remote-as 
+!
