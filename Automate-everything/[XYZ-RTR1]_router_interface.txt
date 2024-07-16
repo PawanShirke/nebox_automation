@@ -1,4 +1,15 @@
 hostname XYZ-RTR1
 
-interface GigabitEthernet0/0/0.0
+
+vlan 1000
+interface GigabitEthernet0/0/0.1000
  description CircuitName
+ 
+vlan 2000
+interface GigabitEthernet0/0/0.2000
+ description CircuitName
+ 
+vlan 1001
+interface GigabitEthernet0/0/0.1001
+ description CircuitName
+ 
