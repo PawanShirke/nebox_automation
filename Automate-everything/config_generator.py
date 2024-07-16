@@ -18,8 +18,9 @@ def generate_config(template_name, site_name, device_name):
     site_id = site_id
 
     # Fetch VLANs data dynamically
-    vlans = get_vlans_by_site(site_id)
+    vlans = get_vlans_by_site()
     vlans_vid = [vlan.vid for vlan in vlans]
+    #print(vlans_vid)
 
     # Fetch interfaces data dynamically
     interfaces = get_interfaces_by_device(device_id)
@@ -36,7 +37,7 @@ def generate_config(template_name, site_name, device_name):
         uplink_interface=uplink_interface.name if uplink_interface else '',
         access_interfaces=access_interfaces,
         vlans_vid=vlans_vid,
-        vlan_id=vlans_vid[0] if vlans_vid else 0,
+        vlans = vlans,
         circuit_name="CircuitName"  # Example static value
     )
 

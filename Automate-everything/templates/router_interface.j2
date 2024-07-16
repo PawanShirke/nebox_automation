@@ -1,4 +1,7 @@
 hostname {{ hostname }}
 
-interface {{ interface.name }}.{{ vlan_id }}
+{% for vlan in vlans %}
+vlan {{ vlan.vid }}
+interface {{ interface.name }}.{{ vlan.vid }}
  description {{ circuit_name }}
+ {% endfor %}

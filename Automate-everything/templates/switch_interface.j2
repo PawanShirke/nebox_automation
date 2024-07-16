@@ -1,6 +1,7 @@
 hostname {{ hostname }}
 
-vlan {{ vlan_id }}
+{% for vlan in vlans %}
+vlan {{ vlan.vid }}
  name {{ circuit_name }}
  exit
 interface {{ uplink_interface }}
@@ -10,3 +11,4 @@ interface {{ interface.name }}
  switchport mode access
  switchport trunk allowed vlan add {{ vlan_id }}
  end
+ {% endfor %}
