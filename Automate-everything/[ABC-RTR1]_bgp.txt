@@ -1,0 +1,9 @@
+hostname ABC-RTR1
+
+router bgp 
+
+ neighbor 10.0.2.1 remote-as 65001
+
+ neighbor 10.0.2.2 remote-as 65002
+
+!

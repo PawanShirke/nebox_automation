@@ -1,5 +1,8 @@
 hostname {{ hostname }}
 
 router bgp {{ bgp_as }}
- neighbor {{ neighbor_ip }} remote-as {{ neighbor_as }}
+{% for neighbor in bgp_neighbors %}
+ neighbor {{ neighbor.ip }} remote-as {{ neighbor.asn }}
+{% endfor %}
 !
+
