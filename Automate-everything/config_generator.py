@@ -2,6 +2,7 @@ from jinja2 import Environment, FileSystemLoader
 from fetch_data.devices import get_device_by_site_and_name
 from fetch_data.interfaces import get_interfaces_by_device
 from fetch_data.vlans import get_vlans_by_site
+from fetch_data.config_contex import get_config_context_for_bgp_neighbor_info
 import argparse
 
 # Setup Jinja2 environment with file loader
@@ -29,6 +30,9 @@ def generate_config(template_name, site_name, device_name):
     uplink_interface = next((iface for iface in interfaces if iface.description == 'UplinkInterface'), None)
     access_interfaces = [iface for iface in interfaces if iface.description == 'access_switchport']
 
+    # Fetch BGP neighbors data dynamically
+    bgp_neighbors = get_config_context_for_bgp_neighbor_info(site_name)
+
     # Render the template
     template = env.get_template(f'{template_name}.j2')
     config = template.render(
@@ -38,7 +42,9 @@ def generate_config(template_name, site_name, device_name):
         access_interfaces=access_interfaces,
         vlans_vid=vlans_vid,
         vlans = vlans,
-        circuit_name="CircuitName"  # Example static value
+        circuit_name="CircuitName",  # Example static value
+        bgp_neighbors=bgp_neighbors  # Pass BGP neighbors data
+
     )
 
     # Save the configuration to a file
