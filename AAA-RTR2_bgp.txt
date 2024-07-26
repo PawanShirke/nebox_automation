@@ -1,0 +1,5 @@
+hostname AAA-RTR2
+
+router bgp 
+
+!
